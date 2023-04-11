@@ -1,0 +1,56 @@
+#:import utils kivy.utils
+
+
+<PredScreen>:
+    FloatLayout:
+        MDToolbar :
+            title : "Your nearest time-to-care is:"
+            anchor_title: "center"
+            md_bg_color: app.theme_cls.primary_light
+            pos_hint: {"top": .895, "left": 1}
+            size_hint: 1, .1
+
+        GridLayout:
+            cols:1
+            size_hint: 1, .695
+            pos_hint: {"top": .795, "left": 1}
+            LabelButton:
+                text: "Show"
+                canvas.before:
+                    Color:
+                        rgb: app.theme_cls.primary_color if self.state == 'normal' else utils.get_color_from_hex("#6C5B7B")
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                pos_hint: {"top": .2, "left": 1}
+                size_hint: .33,.1
+                on_release:
+                    for i in app.flat_list: our_label.text = our_label.text + "\n" + "\n" + i
+
+            MDLabel:
+                id: our_label
+                text: ""
+                font_size:"18sp"
+                bold:True
+                halign: "center"
+                valign: "center"
+                color:(0,0,0,1)
+                #pos_hint: {"top": .795, "left": 1}
+
+
+        GridLayout:
+            cols:1
+            size_hint: 1, .1
+            pos_hint: {"top": .1, "right": 1}
+            LabelButton:
+                text: "Back"
+                canvas.before:
+                    Color:
+                        rgb: app.theme_cls.primary_color if self.state == 'normal' else utils.get_color_from_hex("#6C5B7B")
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                pos_hint: {"top": 1, "right": 1}
+
+                on_release:
+                    app.change_screen("home_screen", direction='left', mode='push')

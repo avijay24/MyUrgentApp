@@ -1,0 +1,24 @@
+#:include kv/homescreen.kv
+#:include kv/predscreen.kv
+
+Screen:
+    MDToolbar :
+        title : 'URGENT'
+        md_bg_color: app.theme_cls.primary_color
+        elevation : 8
+        pos_hint:{"top": 1, "left": 5}
+        anchor_title: "center"
+        size_hint: 1, .1
+
+
+    NavigationLayout :
+        ScreenManager :
+            id: screen_manager
+            size_hint: 1, 1
+            pos_hint: {"top": 1, "left": 1}
+            HomeScreen:
+                name: "home_screen"
+                id: home_screen
+            PredScreen:
+                name: "pred_screen"
+                id: pred_screen

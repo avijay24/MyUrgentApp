@@ -651,7 +651,9 @@ def final_call(user_lat, user_lng):
   
   # convert into hour:minutes:secs format
   final_df['total_mins'] = final_df['total_wait_time'].astype('datetime64[s]').dt.strftime("%H:%M:%S")
-
-  return final_df[['hospital', 'total_mins']].values.tolist()
+  
+  top_list = final_df[['hospital', 'total_mins']].values.tolist()  
+  
+  return sorted(top_list, key = lambda x:x[1])
 
 
